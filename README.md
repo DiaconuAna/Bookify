@@ -40,3 +40,36 @@ Bookify offers the following key features:
 
 - Login Page
   
+    ![login](https://github.com/DiaconuAna/Bookify/blob/main/Resources/login.png)
+
+- Main Page
+
+    ![main](https://github.com/DiaconuAna/Bookify/blob/main/Resources/main_page.png)
+
+- Book Details Page
+
+    ![book page](https://github.com/DiaconuAna/Bookify/blob/main/Resources/book_page.png)
+
+- Add book to shelf
+
+    ![add to shelf](https://github.com/DiaconuAna/Bookify/blob/main/Resources/shelf_option.png)
+
+- Add Review
+
+     ![mark as read](https://github.com/DiaconuAna/Bookify/blob/main/Resources/mark_as_read.png)
+  
+- Reviews Page
+  ![review page](https://github.com/DiaconuAna/Bookify/blob/main/Resources/review_page.png)
+
+- Description Recommender System
+     ![drs](https://github.com/DiaconuAna/Bookify/blob/main/Resources/description%20recommender.png)
+
+- User Profile Recommender System
+     ![sentiment profile](https://github.com/DiaconuAna/Bookify/blob/main/Resources/user_profile_rec.png)
+
+- My Books Page
+   ![my books](https://github.com/DiaconuAna/Bookify/blob/main/Resources/my_books.png)
+
+- Search Page
+  ![search](https://github.com/DiaconuAna/Bookify/blob/main/Resources/detailed_search.png)
+
