@@ -1,0 +1,40 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+i {
+  font-size: 1.5rem;
+  padding-right: 0.1rem;
+  color: #b0c4de;
+}
+.filled {
+  color: #ffc800;
+}
+
+.error-message {
+  display: inline-block;
+  color: #d9534f;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-left: 7%;
+}
+
+.error-message:before {
+  content: "!";
+  display: inline-block;
+  color: #fff;
+  background-color: #d9534f;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: -28px;
+}
+
+.modal_div{
+  padding: 10px;
+  margin: 10px;
+}

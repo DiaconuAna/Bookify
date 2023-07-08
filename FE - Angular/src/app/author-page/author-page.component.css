@@ -1,0 +1,67 @@
+
+
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/deep/ .pagination .page-item .page-link {
+  border-radius: 0 !important;
+}
+
+/deep/ .pagination .page-link {
+  border-top-style: none !important;
+  border-bottom-style: none !important;
+  background-color: #79d1ff !important;
+  color: #ffffff !important;
+}
+
+.spinner-container {
+  position: relative;
+  height: 200px;
+}
+
+.mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.book {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  left: 23%;
+  border: 2px solid #ddd;
+}
+
+.book:hover{
+  background-color: #72bdff;
+}
+
+.book-image {
+  margin-right: 1rem;
+}
+
+.book-details {
+  flex: 1;
+}
+
+.author-list{
+  list-style: none;
+}
+
+.author-list-div{
+  margin-left: 10px;
+}
+
+.author-header{
+  margin-left: 23%;
+  margin-top: 2%;
+}
+
+.book-count{
+  margin-left: 23%;
+}

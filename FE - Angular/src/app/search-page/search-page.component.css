@@ -1,0 +1,113 @@
+.suggested-search{
+  position: absolute;
+  top: 70px;
+  z-index: 10;
+  display: list-item !important;
+  list-style-type: none;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 300px;
+}
+.suggested-search li {
+  padding:5px;
+  border: 1px solid #ddd;
+}
+.suggested-search li a{
+  cursor: pointer;
+  color: blueviolet;
+}
+
+.nav-search {
+  flex: 1;
+  display: flex;
+  margin-left: 5%;
+  margin-right: 10%;
+  margin-top: 5px;
+}
+
+.search{
+  float: right;
+  right: 3%;
+  /*top:10%;*/
+  margin-right: 100px;
+  margin-top: 2%;
+  position: relative;
+  z-index: 2;
+  color: dimgrey;
+}
+
+
+
+input[type=text],[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #79d1ff;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #1db3ff;
+}
+
+.form, .form-data{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 900px;
+  margin: 30px auto;
+}
+
+input.ng-invalid.ng-touched{
+  border: red 1px solid;
+}
+small{
+  color: red;
+}
+
+.search_results{
+  padding: 20px;
+  width: 900px;
+  margin: 30px auto;
+}
+
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/deep/ .pagination .page-item .page-link {
+  border-radius: 0 !important;
+}
+
+/deep/ .pagination .page-link {
+  border-top-style: none !important;
+  border-bottom-style: none !important;
+  background-color: #79d1ff !important;
+  color: #ffffff !important;
+}
+
+.spinner-container {
+  position: relative;
+  height: 200px; /* replace with your desired height */
+}
+
+.mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

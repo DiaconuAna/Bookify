@@ -1,0 +1,61 @@
+<html lang="en">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<app-top-navigation></app-top-navigation>
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div  class = "welcome-container">
+    <h4 class = "welcome_msg">Welcome {{username}}! Here are your shelves!</h4>
+  </div>
+  <div class="image-list" *ngIf="readBooks.length">
+    <h4 class = "shelf-text">Read books</h4>
+    <div class="image-container">
+      <div *ngFor="let book of readBooks" (click)="searchBook(book.title)" class = "book-container">
+        <img [src]="book.image" alt="{{ book.title }} Image" class="book-image">
+        <p class = "book-title">{{ book.title }}</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="image-list" *ngIf="currentlyReadingBooks.length">
+    <h4 class = "shelf-text">Currently Reading books</h4>
+    <div class="image-container">
+      <div *ngFor="let book of currentlyReadingBooks" (click)="searchBook(book.title)" class = "book-container">
+        <img [src]="book.image" alt="{{ book.title }} Image" class="book-image">
+        <p class = "book-title">{{ book.title }}</p>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="image-list" *ngIf="toReadBooks.length">
+    <h4 class = "shelf-text">To Read books</h4>
+    <div class="image-container">
+      <div *ngFor="let book of toReadBooks" (click)="searchBook(book.title)" class = "book-container">
+        <img [src]="book.image" alt="{{ book.title }} Image" class="book-image">
+        <p class = "book-title">{{ book.title }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!hasInfo" class="overlay">
+    <img src="assets/images/no-education.png" alt="No-books-image" class = "error_img">
+    <button
+      type="button"
+      class="btn btn-outline-info me-2"
+      placement="right"
+      ngbPopover="Explore, try the recommender systems and add some books on your shelves!"
+      popoverTitle="Your shelves are empty ..."
+      triggers="mouseenter:mouseleave"
+    >
+      "No books on your shelves..."
+    </button>
+    <!--    <p>{{ "No books on your shelves... Come back after adding a couple of them :)" }}</p>-->
+  </div>
+
+  <div  class = "welcome-container">
+    <hr>
+  </div>
+
+</div>

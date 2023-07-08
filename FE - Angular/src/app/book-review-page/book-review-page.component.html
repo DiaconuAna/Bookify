@@ -1,0 +1,97 @@
+<html lang="en">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<app-top-navigation></app-top-navigation>
+
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class='review-stats'>
+    <h3>Community reviews</h3>
+    <div style="display: flex; align-items: center;">
+      <span style="margin-right: 10px;">1 star :</span>
+      <ngb-progressbar type="success" [value]="oneStarPercentage" style="width: 600px;"></ngb-progressbar>
+      <span style="margin-left: 10px;">{{oneStarCount}} ({{oneStarPercentage  | number: '0.00'}}%)</span>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <span style="margin-right: 10px;">2 stars:</span>
+      <ngb-progressbar type="info" [value]="twoStarPercentage" style="width: 600px;"></ngb-progressbar>
+      <span style="margin-left: 10px;">{{twoStarCount}} ({{twoStarPercentage  | number: '0.00'}}%)</span>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <span style="margin-right: 10px;">3 stars:</span>
+      <ngb-progressbar type="warning" [value]="threeStarPercentage" style="width: 600px;"></ngb-progressbar>
+      <span style="margin-left: 10px;">{{threeStarCount}} ({{threeStarPercentage  | number: '0.00'}}%)</span>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <span style="margin-right: 10px;">4 stars:</span>
+      <ngb-progressbar type="danger" [value]="fourStarPercentage" style="width: 600px;"></ngb-progressbar>
+      <span style="margin-left: 10px;">{{fourStarCount}} ({{fourStarPercentage  | number: '0.00'}}%)</span>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <span style="margin-right: 10px;">5 stars:</span>
+      <ngb-progressbar [value]="fiveStarPercentage" style="width: 600px;"></ngb-progressbar>
+      <span style="margin-left: 10px;">{{fiveStarCount}} ({{fiveStarPercentage  | number: '0.00'}}%)</span>
+    </div>
+  </div>
+  <br>
+  <hr/>
+  <div *ngIf="!isLoading" id="reviews_div">
+    <div class = "user-reviews" *ngIf="userBookReviews.length > 0">
+    <h3>Your reviews: </h3>
+      <li *ngFor="let review of userBookReviews" class = "review-item">
+        <div class="review-details">
+          <p class="review-user">User Id: {{ review.user_id ? review.user_id : '-'}}</p>
+          <p class="review-profile">Profile Name: {{ review.profile_name ? review.profile_name : '-'}}</p>
+          <p class="review-score">Rating: {{review.score  | number: '0.00'}}
+            <ngb-rating [(rate)]="review.score" [readonly]="true" [max]=5></ngb-rating>
+          </p>
+        </div>
+        <p><strong>Summary:</strong> {{ review.review_summary }}</p>
+        <p class="review-text"><strong>Review:</strong> {{ review.review_text }}</p>
+        <button (click)="ShowReviewPolarity(review.id)" class = "btn btn-outline-primary">Show Polarity & Predominant Emotions</button>
+        <button (click)="HideReviewPolarity(review.id)" style="margin-left: 10px;" class = "btn btn-outline-primary">Hide Polarity & Predominant Emotions</button>
+        <br>
+        <span *ngIf="review.showPolarity">
+          <label><strong>Review Polarity: </strong>{{ review.polarity }}</label></span>
+        <br>
+        <span *ngIf="review.showPolarity">
+          <label><strong>Predominant Emotions: </strong>{{ review.emotions }}</label></span>
+      </li>
+    </div>
+    <div class="search_results" *ngIf="pagedBookReviews">
+      <h3>User reviews: </h3>
+      <li *ngFor="let review of pagedBookReviews" class="review-item">
+        <div class="review-details">
+          <p class="review-user">User Id: {{ review.user_id ? review.user_id : '-'}}</p>
+          <p class="review-profile">Profile Name: {{ review.profile_name ? review.profile_name : '-'}}</p>
+          <p class="review-score">Rating: {{review.score  | number: '0.00'}}
+            <ngb-rating [(rate)]="review.score" [readonly]="true" [max]=5></ngb-rating>
+          </p>
+        </div>
+        <p><strong>Summary:</strong> {{ review.review_summary }}</p>
+        <p class="review-text"><strong>Review:</strong> {{ review.review_text }}</p>
+        <button (click)="ShowReviewPolarity(review.id)" class = "btn btn-outline-primary">Show Polarity & Predominant Emotions</button>
+        <button (click)="HideReviewPolarity(review.id)" style="margin-left: 10px;" class = "btn btn-outline-primary">Hide Polarity & Predominant Emotions</button>
+        <br>
+        <span *ngIf="review.showPolarity">
+          <label><strong>Review Polarity: </strong>{{ review.polarity }}</label></span>
+        <br>
+        <span *ngIf="review.showPolarity">
+          <label><strong>Predominant Emotions: </strong>{{ review.emotions }}</label></span>
+      </li>
+
+      <ngb-pagination class="d-flex justify-content-center"
+                      [collectionSize]="this.bookReviews.length"
+                      [(page)]="page"
+                      [maxSize]="5"
+                      [pageSize]="10"
+                      [rotate]="true"
+                      [ellipses]="false"
+                      [boundaryLinks]="true"
+                      (pageChange)="getPageInfo()"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

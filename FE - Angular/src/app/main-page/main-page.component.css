@@ -1,0 +1,101 @@
+.image-list {
+  text-align: left;
+  margin-left: 10%;
+}
+
+.image-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.book-image {
+  width: 200px;
+  height: 250px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+p {
+  text-align: center;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  overflow: visible;
+}
+
+.overlay {
+  position: relative;
+  top: 10%;
+  left: 17%;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*background-color: rgba(0, 0, 0, 0.8);*/
+  /*border: 2px solid black;*/
+}
+
+.error_img {
+  max-width: 40%;
+  max-height: 40%;
+  margin-top: 6%;
+  margin-bottom: 2%;
+}
+
+.welcome-container {
+  background-color: lightsteelblue;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.welcome-container h4 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Garamond;
+}
+
+.shelf-text{
+  font-weight: bold;
+  font-family: Garamond;
+  margin-left: 1%;
+}
+
+.book-title {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  font-weight: normal;
+  font-family: "Bookman Old Style";
+}
+
+.shelf-text:hover{
+  color: lightsteelblue;
+  opacity: 1;
+}
+
+.book-title:hover{
+  color: #72bdff;
+  opacity: 1;
+}
+
+.book-container:hover {
+  background-color: lightsteelblue;
+}

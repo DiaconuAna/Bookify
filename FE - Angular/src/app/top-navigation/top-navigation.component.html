@@ -1,0 +1,57 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="main">Bookify</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="main">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/userBooks">My Books</a>
+        </li>
+
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link active" ngbDropdownToggle>Recommendation</a>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem (click)="recommendDescription()">based on book's description</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="recommendProfile()">based on your profile</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-search">
+        <input [ngModel]="title" (ngModelChange)="searchByTitle($event)" type="text" name="search_result"
+               placeholder="Search books..."
+               class="form-control">
+        <fa-icon [icon]="searchIcon" class="search" (click)="searchDetailed()"></fa-icon>
+        <br>
+        <br>
+        <div #list class="suggested-search" *ngIf="searchedBookTitles && showList">
+          <li *ngFor="let b of searchedBookTitles"
+              (click)="searchBook(b.title)">
+            {{b.title}}
+          </li>
+<!--          <li *ngIf="searchedBookTitles.length >= 1">-->
+<!--            <a>View all results</a>-->
+<!--          </li>-->
+        </div>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">
+          Sign Out</a>
+          <i class="material-icons">logout</i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

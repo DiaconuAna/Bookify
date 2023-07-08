@@ -1,0 +1,76 @@
+<html lang="en">
+
+<app-top-navigation></app-top-navigation>
+
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="container">
+    <div class="row">
+      <div class='col-md-4'>
+        <div [ngSwitch]="currentBook.image" class='col-md-4'>
+          <img *ngSwitchCase="[defaultImage]" [src]="[defaultImage]" alt="No cover available"
+               class='book_default_image'>
+          <img *ngSwitchDefault [src]="currentBook.image" alt="Book cover" class='book_image'>
+        </div>
+        <br>
+      </div>
+
+      <div class="col-md-8 book_metadata">
+        <h1 class="book-title">{{currentBook.title}}</h1>
+        <h2 class="book-author" (click)="goToAuthor()">{{currentBook.authors}}</h2>
+        <h4 class="book-genre">{{currentBook.categories}}</h4>
+        <p class="book-summary">{{currentBook.description}}</p>
+        <p *ngIf="currentBook.publisher"><strong>Publisher:</strong> {{currentBook.publisher}}</p>
+        <p *ngIf="currentBook.publishedDate"><strong>Published:</strong>{{currentBook.publishedDate}}</p>
+        <p *ngIf="currentBook.ratingsAverage"><strong>Ratings</strong>
+          <ng-template #t let-fill="fill">
+            <i class="bi-star-fill">
+              <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+            </i>
+          </ng-template>
+          <ngb-rating [(rate)]="currentBook.ratingsAverage" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+        <hr/>
+        <pre>Rate: <b>{{currentBook.ratingsAverage}}</b></pre>
+        <hr/>
+        <p *ngIf="keywords_list.length > 0"><strong>Keywords: </strong></p>
+        <div class="keyword" *ngFor="let keywords of keywords_list">{{ keywords }}</div>
+        <hr/>
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="!showSentiments">
+          <p><strong>Sentiments: </strong></p>
+          <div class="keyword" *ngFor="let s of sentiment_list">{{ s }}</div>
+          <hr/>
+        </div>
+        <div *ngIf="sentiment_list.length == 0">
+          <p><strong>No sentiments could be extracted from the book's description!</strong></p>
+        </div>
+        <div class="button-container">
+          <div ngbDropdown class='content'>
+            <button type="button" class="btn btn-outline-primary " id="dropdownBasic1"
+                    ngbDropdownToggle>
+              Choose a shelf
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="openModal('Currently Reading')">Currently Reading</button>
+              <button ngbDropdownItem (click)="openModal('To Read')">To Read</button>
+              <button ngbDropdownItem (click)="openModal('Read')">Read</button>
+            </div>
+          </div>
+          <button class='btn btn-outline-primary custom_button_1' id='review_button' (click)=viewReviews()>See Reviews
+          </button>
+          <button class='btn btn-outline-primary custom_button_2' id='rate_button'
+                  [disabled]="sentiment_list.length == 0"
+                  type="button"
+                  (click)="collapse.toggle()"
+                  [attr.aria-expanded]="showSentiments"
+                  aria-controls="collapseExample">
+            View book sentiments
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</html>

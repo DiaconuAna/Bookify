@@ -1,0 +1,27 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div  class = 'modal_div'>
+<p> Your rating:
+<ngb-rating [(rate)]="currentRate" [max]="5">
+  <ng-template let-fill="fill" let-index="index">
+    <i class="bi-star{{fill === 100 ? '-fill' : ''}}" [class.filled]="fill === 100"></i>
+  </ng-template>
+</ngb-rating>
+</p>
+
+<div class="form-group">
+  <label for="reviewText">Review Summary</label>
+  <textarea class="form-control" id="reviewSummary" rows="2" [(ngModel)]="reviewSummary" placeholder="Enter your review summary (optional)"></textarea>
+</div>
+<div class="form-group">
+  <label for="reviewText">Review Text </label>
+  <textarea class="form-control" id="reviewText" rows="5" [(ngModel)]="reviewText" placeholder="Enter your review (optional)"></textarea>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="close()">OK</button>
+  <button type="button" class="btn btn-outline-dark" (click)="dismiss('Cancel')">Cancel</button>
+</div>
+
+<span class="error-message" *ngIf="invalidRating">Please enter a valid rating.</span>
+</div>

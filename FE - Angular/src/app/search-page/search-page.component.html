@@ -1,0 +1,50 @@
+<html lang="en">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<app-top-navigation></app-top-navigation>
+
+<div class="form">
+  <h3 id="search">Search</h3>
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <div>
+      <!--      <label for="searchtext">Fi</label>-->
+      <input type="text" id="searchtext" placeholder="Search for a title, genre or author.."
+             name="search_text" ngModel required>
+      <input type="submit" value="Submit" id="btn" style="float: right;"><!--[disabled]="!myForm.valid"-->
+    </div>
+    <label style="margin-right: 1%">Search criteria : </label>
+    <input type="radio" id=1 [value]="'title'" name="criteria" ngModel style="margin-right: 0.5%">Title
+    <input type="radio" id=2 [value]="'genre'" name="criteria" ngModel style="margin-right: 0.5%">Genre
+    <input type="radio" id=3 [value]="'author'" name="criteria" ngModel style="margin-right: 0.5%">Author
+    <div class="alert alert-warning" *ngIf="criteria==''">Select a search criteria.
+    </div>
+    <div class="alert alert-warning" *ngIf="search_text==''">Input a search text.
+    </div>
+  </form>
+</div>
+
+<div class="spinner-container" *ngIf="isLoading && criteria != '' && search_text != ''">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="search_results" *ngIf="allBooks && allBooks.length > 0">
+    <mat-action-list>
+      <mat-list-item *ngFor="let b of allBooks" (click)="searchBook(b.title)">
+        <img [src]="b.image" mat-list-avatar alt="">
+        <div matLine>{{ b.title }}</div>
+        <div matLine>Author: {{ b.author }}</div>
+        <div matLine>Genres : {{ b.genre }}</div>
+      </mat-list-item>
+    </mat-action-list>
+
+    <ngb-pagination class="col-12 justify-content-center"
+                    [collectionSize]="100"
+                    [(page)]="page"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [ellipses]="false"
+                    [boundaryLinks]="true"
+                    (pageChange)="searchByCriteria( page, 10)"
+    ></ngb-pagination>
+  </div>
+</div>

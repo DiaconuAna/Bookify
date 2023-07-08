@@ -1,0 +1,92 @@
+<app-top-navigation></app-top-navigation>
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading && hasInfo">
+  <div class="checkbox-container">
+    <p>Bookshelves</p>
+    <label>
+      <input type="checkbox" [(ngModel)]="readChecked" (change)="refreshBooksFilter()"> Read
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="toReadChecked" (change)="refreshBooksFilter()"> To Read
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="currentlyReadingChecked" (change)="refreshBooksFilter()"> Currently Reading
+    </label>
+  </div>
+<!--  <div *ngIf="filteredBooks.length > 0">-->
+    <form class = "form-container">
+      <div class="mb-3 row">
+        <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+        <div class="col-xs-3 col-sm-auto">
+          <input id="table-filtering-search" class="form-control" type="text" [(ngModel)]="searchQuery"
+                 (ngModelChange)="refreshBooksFilter()" [ngModelOptions]="{standalone: true}"/>
+        </div>
+      </div>
+    </form>
+  <div *ngIf="filteredBooks.length > 0">
+    <div class="table-container">
+      <table class="table table-borderless">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Shelf</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let book of pagedBooks" (click)="searchBook(book.title)">
+<!--          <ng-container *ngIf="checkSearch(book)">-->
+          <th scope="row">{{ book.id }}</th>
+          <td>
+            <img
+              [src]="book.image"
+              class="me-2"
+              style="width: 20px"
+              alt="book-image"
+            />
+            {{ book.title }}
+          </td>
+          <td>{{ book.author}}</td>
+          <td>{{ book.genre }}</td>
+          <td>{{ book.shelf }}</td>
+<!--          </ng-container>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-center flex-column align-items-center" style="padding-bottom: 2%">
+      <ngb-pagination
+        [collectionSize]="filteredBooks.length"
+        [(page)]="page"
+        [pageSize]="pageSize"
+        (pageChange)="refreshBooks()">
+      </ngb-pagination>
+
+      <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshBooks()">
+        <option [ngValue]="5">5 items per page</option>
+        <option [ngValue]="10">10 items per page</option>
+      </select>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!isLoading && !hasInfo" class="overlay">
+  <img src="assets/images/no-education.png" alt="No-books-image">
+  <button
+    type="button"
+    class="btn btn-outline-info me-2"
+    placement="bottom"
+    ngbPopover="The books you add to your shelves will be displayed here."
+    popoverTitle="Your shelves are empty"
+    triggers="mouseenter:mouseleave"
+  >
+    "No books on your shelves..."
+  </button>
+  <!--    <p>{{ "No books on your shelves... Come back after adding a couple of them :)" }}</p>-->
+</div>

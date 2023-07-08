@@ -1,0 +1,90 @@
+.spinner-container {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  overflow: visible;
+}
+
+.overlay {
+  position: relative;
+  top: 10%;
+  left: 17%;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*background-color: rgba(0, 0, 0, 0.8);*/
+  /*border: 2px solid black;*/
+}
+
+img {
+  max-width: 50%;
+  max-height: 50%;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #000000;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+.table tbody tr {
+  height: 120%;
+  width: 120%;
+}
+
+.table tbody tr:hover {
+  background-color: #72bdff;
+}
+
+.table tbody tr:active {
+  /*background-color: rgba(43, 108, 190, 0.88);*/
+  background-color: lightsteelblue;
+}
+
+.table-container{
+  margin-top: 2%;
+  position: relative;
+  left: 5%;
+  width: 90%;
+  /*height: 80%;*/
+  top: 30%;
+  overflow-y: auto; /* enable vertical scrolling */
+}
+
+.form-container{
+  position: relative;
+  margin-left: 5%;
+  font-size: 130%;
+}
+
+.checkbox-container {
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1%;
+}
+.checkbox-container p {
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 2%;
+}
+
+.checkbox-container label {
+  margin-right: 2%;
+}

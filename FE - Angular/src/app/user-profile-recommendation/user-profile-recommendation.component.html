@@ -1,0 +1,72 @@
+<app-top-navigation></app-top-navigation>
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="chart-container">
+  <canvas id="SentimentStatistic">{{ chart }}</canvas>
+  <div class="row" *ngIf="!isLoading && hasInfo">
+    <p class="highlighted">Filter by sentiment</p>
+    <div class="column-container">
+      <div class="col-md-6">
+        <div *ngFor="let item of allSentiments.slice(0, 12); let i = index">
+          <label>
+            <input class="child1" type="checkbox" [(ngModel)]="checkedValues[i]"
+                   (change)="onCheckboxChange(item, checkedValues[i])"> {{item}}
+          </label>
+        </div>
+      </div>
+      <div class="col-md-6" id="col2">
+        <div *ngFor="let item of allSentiments.slice(12); let i = index">
+          <label>
+            <input type="checkbox" [(ngModel)]="checkedValues[i+12]"
+                   (change)="onCheckboxChange(item, checkedValues[i+12])"> {{item}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isLoading && hasInfo">
+  <div class="table-container">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Sentiment</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let book of filteredBooks" [routerLink]="['/book', book.title]">
+
+        <th scope="row">{{ book.id }}</th>
+        <td>
+          <ngb-highlight [result]="book.title"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="book.sentiments"></ngb-highlight>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!--  <div class="d-flex justify-content-between p-2">-->
+    <!--    <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">-->
+    <!--    </ngb-pagination>-->
+    <!--  </div>-->
+  </div>
+</div>
+<div *ngIf="!isLoading && !hasInfo" class="overlay">
+  <img src="assets/images/no-education.png" alt="No-books-image">
+  <button
+    type="button"
+    class="btn btn-outline-info me-2"
+    placement="bottom"
+    ngbPopover="In order to build a sentiment-based user profile, you need to add books on your Read shelf."
+    popoverTitle="Incomplete User Profile"
+    triggers="mouseenter:mouseleave"
+  >
+    "No books on your shelves..."
+  </button>
+  <!--    <p>{{ "No books on your shelves... Come back after adding a couple of them :)" }}</p>-->
+</div>

@@ -1,0 +1,27 @@
+<html lang="en">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<app-top-navigation></app-top-navigation>
+
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading" class = "author-list-div">
+  <h2 class = 'author-header'>Books by {{authorName}}</h2>
+  <p class = "book-count">{{this.authorBooks.length }} books</p>
+  <ul>
+  <li *ngFor="let book of authorBooks" class = "author-list" >
+    <div class="book" (click)="searchBook(book.title)">
+      <div class="book-image">
+        <img src="{{ book.image }}" alt="{{ book.title }}" />
+      </div>
+      <div class="book-details">
+        <h2>{{ book.title }}</h2>
+        <p>by {{ book.authors }}</p>
+        <p>Category: {{book.categories}}</p>
+      </div>
+    </div>
+    <br>
+  </li>
+</ul>
+</div>
